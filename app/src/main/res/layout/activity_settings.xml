@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/yp_white"
+    android:orientation="vertical"
+    android:padding="0dp"
+    android:id="@+id/settings_activity"
+    tools:context=".SettingsActivity">
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:text="@string/settings"
+            android:textColor="@color/yp_black"
+            android:textSize="@dimen/main_text_size" />
+
+
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:layout_marginTop="0dp"
+        android:orientation="vertical">
+
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/menu_item_height">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:gravity="start"
+                android:text="@string/dark_theme"
+                android:textColor="@color/yp_black"
+                android:textSize="@dimen/settings_text_size" />
+
+            <Switch
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|center"
+                android:backgroundTint="@color/yp_white"
+                android:gravity="center_vertical"
+                tools:ignore="UseSwitchCompatOrMaterialXml" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/menu_item_height">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:gravity="start"
+                android:text="@string/share"
+                android:textColor="@color/yp_black"
+                android:textSize="@dimen/settings_text_size" />
+
+            <ImageView
+                android:layout_width="@dimen/icon_size"
+                android:layout_height="@dimen/icon_size"
+                android:layout_gravity="end|center"
+                android:backgroundTint="@color/yp_text_grey"
+                android:gravity="center_vertical"
+                android:src="@drawable/share" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/menu_item_height">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:gravity="start"
+                android:text="@string/support"
+                android:textColor="@color/yp_black"
+                android:textSize="@dimen/settings_text_size" />
+
+            <ImageView
+                android:layout_width="@dimen/icon_size"
+                android:layout_height="@dimen/icon_size"
+                android:layout_gravity="end|center"
+                android:backgroundTint="@color/yp_text_grey"
+                android:gravity="center_vertical"
+                android:src="@drawable/support" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/menu_item_height">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:gravity="start"
+                android:text="@string/user_agreement"
+                android:textColor="@color/yp_black"
+                android:textSize="@dimen/settings_text_size" />
+
+            <ImageView
+                android:layout_width="@dimen/icon_size"
+                android:layout_height="@dimen/icon_size"
+                android:layout_gravity="end|center"
+                android:backgroundTint="@color/yp_text_grey"
+                android:gravity="center_vertical"
+                android:src="@drawable/arrow_forward" />
+
+        </FrameLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:baselineAligned="false"
+        android:layout_gravity="bottom">
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <ImageView
+                android:layout_width="@dimen/icon_size"
+                android:layout_height="@dimen/icon_size"
+                android:src="@drawable/search"
+                android:layout_gravity="top|center"
+                app:tint="@color/yp_black" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center"
+                android:text="@string/search"
+                android:textColor="@color/yp_black"
+                android:textSize="@dimen/settings_text_size" />
+
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <ImageView
+                android:layout_width="@dimen/icon_size"
+                android:layout_height="@dimen/icon_size"
+                android:src="@drawable/media_library"
+                android:layout_gravity="top|center"
+                app:tint="@color/yp_black" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center"
+                android:text="@string/media_library"
+                android:textColor="@color/yp_black"
+                android:textSize="@dimen/settings_text_size" />
+
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <ImageView
+                android:layout_width="@dimen/icon_size"
+                android:layout_height="@dimen/icon_size"
+                android:src="@drawable/settings"
+                android:layout_gravity="top|center"
+                app:tint="@color/yp_blue" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center"
+                android:text="@string/settings"
+                android:textColor="@color/yp_blue"
+                android:textSize="@dimen/settings_text_size" />
+
+
+        </FrameLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
