@@ -9,6 +9,6 @@
     <dimen name="vertical_margin">8dp</dimen>
     <dimen name="menu_item_height">61dp</dimen>
     <dimen name="icon_size">24dp</dimen>
-    <dimen name="buttom_menu_margin">8dp</dimen>
-    <dimen name="buttom_menu_text_size">12sp</dimen>
+    <dimen name="bottom_menu_margin">8dp</dimen>
+    <dimen name="bottom_menu_text_size">12sp</dimen>
 </resources>

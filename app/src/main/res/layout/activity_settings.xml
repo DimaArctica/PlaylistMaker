@@ -154,7 +154,7 @@
                     android:layout_width="@dimen/icon_size"
                     android:layout_height="@dimen/icon_size"
                     android:layout_gravity="top|center"
-                    android:layout_margin="@dimen/buttom_menu_margin"
+                    android:layout_margin="@dimen/bottom_menu_margin"
                     android:src="@drawable/search"
                     app:tint="@color/yp_black" />
 
@@ -162,10 +162,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom|center"
-                    android:layout_margin="@dimen/buttom_menu_margin"
+                    android:layout_margin="@dimen/bottom_menu_margin"
                     android:text="@string/search"
                     android:textColor="@color/yp_black"
-                    android:textSize="@dimen/buttom_menu_text_size" />
+                    android:textSize="@dimen/bottom_menu_text_size" />
 
             </FrameLayout>
 
@@ -178,7 +178,7 @@
                     android:layout_width="@dimen/icon_size"
                     android:layout_height="@dimen/icon_size"
                     android:layout_gravity="top|center"
-                    android:layout_margin="@dimen/buttom_menu_margin"
+                    android:layout_margin="@dimen/bottom_menu_margin"
                     android:src="@drawable/media_library"
                     app:tint="@color/yp_black" />
 
@@ -186,10 +186,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom|center"
-                    android:layout_margin="@dimen/buttom_menu_margin"
+                    android:layout_margin="@dimen/bottom_menu_margin"
                     android:text="@string/media_library"
                     android:textColor="@color/yp_black"
-                    android:textSize="@dimen/buttom_menu_text_size" />
+                    android:textSize="@dimen/bottom_menu_text_size" />
 
 
             </FrameLayout>
@@ -203,7 +203,7 @@
                     android:layout_width="@dimen/icon_size"
                     android:layout_height="@dimen/icon_size"
                     android:layout_gravity="top|center"
-                    android:layout_margin="@dimen/buttom_menu_margin"
+                    android:layout_margin="@dimen/bottom_menu_margin"
                     android:src="@drawable/settings"
                     app:tint="@color/yp_blue" />
 
@@ -211,10 +211,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom|center"
-                    android:layout_margin="@dimen/buttom_menu_margin"
+                    android:layout_margin="@dimen/bottom_menu_margin"
                     android:text="@string/settings"
                     android:textColor="@color/yp_blue"
-                    android:textSize="@dimen/buttom_menu_text_size" />
+                    android:textSize="@dimen/bottom_menu_text_size" />
 
 
             </FrameLayout>
