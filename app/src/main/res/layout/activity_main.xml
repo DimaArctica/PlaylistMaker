@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/MainActivityStyle"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/yp_blue"
     android:orientation="vertical"
     android:padding="0dp">
 
@@ -14,13 +14,9 @@
         android:layout_margin="@dimen/std_margin">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="top"
+            style="@style/MainTitleTextStyle"
             android:layout_margin="4dp"
-            android:text="@string/title"
-            android:textColor="@color/yp_white"
-            android:textSize="@dimen/main_text_size" />
+            android:text="@string/title" />
 
 
     </FrameLayout>
@@ -36,7 +32,8 @@
             android:id="@+id/search_button"
             style="@style/MainActivityButtonStyle"
             android:text="@string/search"
-            app:icon="@drawable/search" />
+            app:icon="@drawable/search"
+            app:iconPading="10"/>
 
         <Button
             android:id="@+id/media_library_button"
