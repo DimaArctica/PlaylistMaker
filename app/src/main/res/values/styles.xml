@@ -18,4 +18,17 @@
         <item name="android:textFontWeight">500</item>
     </style>
 
+    <style name="SettingsMenuItem">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/menu_item_height</item>
+        <item name="android:padding">@dimen/padding</item>
+    </style>
+
+    <style name="BottomMenuItem">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_gravity">bottom</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+
 </resources>

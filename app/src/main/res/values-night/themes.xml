@@ -33,7 +33,7 @@
         <item name="android:textColor">@color/yp_white</item>
     </style>
 
-    <style name="SettingsMenuItem">
+    <style name="SettingsMenuItemText">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_gravity">center_vertical</item>
@@ -68,4 +68,5 @@
         <item name="android:layout_margin">@dimen/bottom_menu_margin</item>
         <item name="tint">@color/yp_white</item>
     </style>
+
 </resources>
