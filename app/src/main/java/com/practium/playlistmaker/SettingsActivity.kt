@@ -15,19 +15,28 @@ class SettingsActivity : AppCompatActivity() {
         setContentView(R.layout.activity_settings)
 
         val shareButton = findViewById<FrameLayout>(R.id.shareButton)
+        val supportButton = findViewById<FrameLayout>(R.id.supportButton)
+        val userAgreementButton = findViewById<FrameLayout>(R.id.userAgreementButton)
 
         shareButton.setOnClickListener {
-//            val message = "https://practicum.yandex.ru/profile/android-developer-plus/"
-//            val shareIntent = Intent(Intent.ACTION_CHOOSER)
-//            //shareIntent.action = Intent.ACTION_SEND
-//            shareIntent.putExtra(Intent.EXTRA_TEXT, message)
-//            startActivity(intent)
-            val message = "Привет, Android-разработка — это круто!"
-            val shareIntent = Intent(Intent.ACTION_SENDTO)
-            shareIntent.data = Uri.parse("")
-            //shareIntent.putExtra(Intent.EXTRA_, arrayOf("yourEmail@ya.ru"))
-            shareIntent.putExtra(Intent.EXTRA_TEXT, message)
+            val shareIntent = Intent(Intent.ACTION_SEND)
+            shareIntent.putExtra(Intent.EXTRA_TEXT, R.string.share_message)
+            shareIntent.type = "text/plain"
             startActivity(shareIntent)
+        }
+
+        supportButton.setOnClickListener {
+            val supportIntent = Intent(Intent.ACTION_SENDTO)
+            supportIntent.data = Uri.parse("mailto:")
+            supportIntent.putExtra(Intent.EXTRA_EMAIL, arrayOf(getString(R.string.support_email_address)))
+            supportIntent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.support_email_subject))
+            supportIntent.putExtra(Intent.EXTRA_TEXT, getString(R.string.support_email_text))
+            startActivity(supportIntent)
+        }
+
+        userAgreementButton.setOnClickListener {
+            val userAgreementIntent = Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.user_agreement_url)))
+            startActivity(userAgreementIntent)
         }
 
     }

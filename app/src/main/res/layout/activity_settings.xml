@@ -54,7 +54,9 @@
 
         </FrameLayout>
 
-        <FrameLayout style="@style/SettingsMenuItem">
+        <FrameLayout
+            android:id="@+id/supportButton"
+            style="@style/SettingsMenuItem">
 
             <TextView
                 style="@style/SettingsMenuItemText"
@@ -66,7 +68,9 @@
 
         </FrameLayout>
 
-        <FrameLayout style="@style/SettingsMenuItem">
+        <FrameLayout
+            android:id="@+id/userAgreementButton"
+            style="@style/SettingsMenuItem">
 
             <TextView
                 style="@style/SettingsMenuItemText"
