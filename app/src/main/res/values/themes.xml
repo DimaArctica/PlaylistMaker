@@ -23,12 +23,13 @@
         <item name="android:textSize">@dimen/main_text_size</item>
     </style>
 
-    <style name="SettingsTitleTextStyle">
+    <style name="PanelHeaderTextStyle">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_gravity">start</item>
+        <item name="android:layout_gravity">center</item>
         <item name="android:textColor">@color/yp_black</item>
         <item name="android:textSize">@dimen/main_text_size</item>
+        <item name="android:paddingLeft">@dimen/HeaderTextPadding</item>
     </style>
 
     <style name="SettingsActivityStyle">
@@ -69,6 +70,16 @@
         <item name="android:layout_gravity">top|center</item>
         <item name="android:layout_margin">@dimen/bottom_menu_margin</item>
         <item name="tint">@color/yp_black</item>
+    </style>
+
+    <style name="ArrowBackStyle">
+        <item name="android:layout_width">48dp</item>
+        <item name="android:layout_height">48dp</item>
+        <item name="android:padding">16dp</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:src">@drawable/arrow_back</item>
+        <item name="tint">@color/yp_black</item>
+        <item name="android:foreground">?attr/selectableItemBackground</item>
     </style>
 
 </resources>

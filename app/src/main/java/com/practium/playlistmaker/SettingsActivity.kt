@@ -1,9 +1,11 @@
 package com.practium.playlistmaker
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.widget.FrameLayout
+import android.widget.ImageView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -25,6 +27,11 @@ class SettingsActivity : AppCompatActivity() {
         val shareButton = findViewById<FrameLayout>(R.id.shareButton)
         val supportButton = findViewById<FrameLayout>(R.id.supportButton)
         val userAgreementButton = findViewById<FrameLayout>(R.id.userAgreementButton)
+        val goBackArrow = findViewById<ImageView>(R.id.settingsArrowBackButton)
+
+        goBackArrow.setOnClickListener {
+            finish()
+        }
 
         shareButton.setOnClickListener {
             val shareIntent = Intent(Intent.ACTION_SEND)
