@@ -32,20 +32,8 @@
             android:layout_height="52dp">
 
             <EditText
-                android:layout_width="match_parent"
-                android:layout_height="36dp"
-                android:layout_gravity="center"
-                android:layout_marginLeft="@dimen/padding"
-                android:layout_marginRight="@dimen/padding"
-                android:background="@color/yp_white"
-                android:hint="@string/search"
-                android:inputType="text"
-                android:lines="1"
-                android:radius="8dp"
-                android:textColor="@color/yp_black"
-                android:textColorHint="@color/yp_black"
-                android:drawableStart="@drawable/search"
-                android:drawablePadding="13dp" />
+                style="@style/SearchTextEditStyle"
+                android:hint="@string/search"/>
         </FrameLayout>
 
     </LinearLayout>
