@@ -20,7 +20,7 @@ class SettingsActivity : AppCompatActivity() {
 
         shareButton.setOnClickListener {
             val shareIntent = Intent(Intent.ACTION_SEND)
-            shareIntent.putExtra(Intent.EXTRA_TEXT, R.string.share_message)
+            shareIntent.putExtra(Intent.EXTRA_TEXT, getString(R.string.share_message))
             shareIntent.type = "text/plain"
             startActivity(shareIntent)
         }
