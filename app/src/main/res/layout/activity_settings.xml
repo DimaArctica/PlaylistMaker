@@ -29,14 +29,12 @@
         <FrameLayout style="@style/SettingsMenuItem">
 
             <Switch
+                style="@style/SettingsMenuItemText"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:backgroundTint="@color/yp_white"
-                android:fontFamily="@font/ys_display_regular"
+                android:layout_height="@dimen/menu_item_height"
+                android:foreground="?attr/selectableItemBackground"
                 android:gravity="center_vertical"
                 android:text="@string/dark_theme"
-                android:textSize="@dimen/settings_text_size"
                 tools:ignore="UseSwitchCompatOrMaterialXml" />
         </FrameLayout>
 
