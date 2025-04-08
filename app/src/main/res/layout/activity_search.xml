@@ -32,8 +32,19 @@
             android:layout_height="52dp">
 
             <EditText
+                android:id="@+id/searchEditText"
                 style="@style/SearchTextEditStyle"
                 android:hint="@string/search"/>
+
+            <ImageView
+                android:id="@+id/clearIcon"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_gravity="center|end"
+                android:layout_marginEnd="@dimen/padding"
+                android:src="@android:drawable/ic_menu_close_clear_cancel"
+                android:foreground="?attr/selectableItemBackground"
+                android:visibility="gone"/>
         </FrameLayout>
 
     </LinearLayout>

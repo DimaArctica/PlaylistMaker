@@ -91,6 +91,7 @@
         <item name="android:background">@drawable/bg_edit_text</item>
         <item name="android:backgroundTint">@color/yp_light_gray</item>
         <item name="android:lines">1</item>
+        <item name="android:maxLines">1</item>
         <item name="android:textColor">@color/yp_black</item>
         <item name="android:textFontWeight">400</item>
         <item name="android:textColorHint">@color/yp_text_grey</item>
