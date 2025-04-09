@@ -18,8 +18,8 @@
             tools:ignore="MissingConstraints">
 
             <ImageView
-                style="@style/ArrowBackStyle"
-                android:id="@+id/arrowBackButton"/>
+                android:id="@+id/arrowBackButton"
+                style="@style/ArrowBackStyle" />
 
             <TextView
                 style="@style/PanelHeaderTextStyle"
@@ -34,17 +34,12 @@
             <EditText
                 android:id="@+id/searchEditText"
                 style="@style/SearchTextEditStyle"
-                android:hint="@string/search"/>
+                android:hint="@string/search_hint" />
 
             <ImageView
                 android:id="@+id/clearIcon"
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                android:layout_gravity="center|end"
-                android:layout_marginEnd="@dimen/padding"
-                android:src="@android:drawable/ic_menu_close_clear_cancel"
-                android:foreground="?attr/selectableItemBackground"
-                android:visibility="gone"/>
+                style="@style/ClearSearchIconTheme"
+                android:visibility="gone" />
         </FrameLayout>
 
     </LinearLayout>

@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Playlist Maker</string>
     <string name="search">Поиск</string>
+    <string name="search_hint">Поиск</string>
     <string name="media_library">Медиатека</string>
     <string name="settings">Настройки</string>
     <string name="title">Playlist Maker</string>
