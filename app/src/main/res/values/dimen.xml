@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="padding">16dp</dimen>
+    <dimen name="main_text_size">22sp</dimen>
+    <dimen name="main_button_corner_radius">16dp</dimen>
+    <dimen name="settings_text_size">16sp</dimen>
+    <dimen name="search_edit_text_size">16sp</dimen>
+    <dimen name="header_linear_margin">4dp</dimen>
+    <dimen name="icon_button_padding">8dp</dimen>
+    <dimen name="std_margin">16dp</dimen>
+    <dimen name="vertical_margin">8dp</dimen>
+    <dimen name="menu_item_height">61dp</dimen>
+    <dimen name="icon_size">24dp</dimen>
+    <dimen name="bottom_menu_margin">8dp</dimen>
+    <dimen name="bottom_menu_text_size">12sp</dimen>
+    <dimen name="header_text_padding">12dp</dimen>
+    <dimen name="header_linear_height">56dp</dimen>
+    <dimen name="main_buttons_icon_size">24dp</dimen>
+    <dimen name="search_text_edit_height">36dp</dimen>
+    <dimen name="search_text_edit_drawable_padding">13dp</dimen>
+    <dimen name="clear_search_icon_size">12dp</dimen>
+    <dimen name="arrow_back_size">48dp</dimen>
+</resources>

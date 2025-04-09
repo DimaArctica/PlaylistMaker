@@ -4,4 +4,111 @@
         <!-- Customize your dark theme here. -->
         <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
     </style>
+    <style name="MainActivityStyle">
+        <item name="android:background">@color/yp_black</item>
+    </style>
+
+    <style name="SettingsMenu">
+        <item name="android:background">@color/yp_black</item>
+    </style>
+
+    <style name="MainTitleTextStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">start</item>
+        <item name="android:textColor">@color/yp_white</item>
+        <item name="android:textSize">@dimen/main_text_size</item>
+    </style>
+
+    <style name="PanelHeaderTextStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:textColor">@color/yp_white</item>
+        <item name="android:textSize">@dimen/main_text_size</item>
+        <item name="android:paddingLeft">@dimen/header_text_padding</item>
+    </style>
+
+    <style name="SettingsActivityStyle">
+        <item name="android:background">@color/yp_black</item>
+        <item name="android:textColor">@color/yp_white</item>
+    </style>
+
+    <style name="SettingsMenuItemText">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:fontFamily">@font/ys_display_regular</item>
+        <item name="android:gravity">start</item>
+        <item name="android:textSize">@dimen/settings_text_size</item>
+        <item name="android:textColor">@color/yp_white</item>
+    </style>
+
+    <style name="SettingsIconStyle">
+        <item name="android:layout_width">@dimen/icon_size</item>
+        <item name="android:layout_height">@dimen/icon_size</item>
+        <item name="android:layout_gravity">end|center</item>
+        <item name="tint">@color/yp_white</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+    <style name="BottomMenuItemText">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">bottom|center</item>
+        <item name="android:layout_margin">@dimen/bottom_menu_margin</item>
+        <item name="android:text">@string/search</item>
+        <item name="android:textColor">@color/yp_white</item>
+        <item name="android:textSize">@dimen/bottom_menu_text_size</item>
+    </style>
+
+    <style name="BottomMenuItemIcon">
+        <item name="android:layout_width">@dimen/icon_size</item>
+        <item name="android:layout_height">@dimen/icon_size</item>
+        <item name="android:layout_gravity">top|center</item>
+        <item name="android:layout_margin">@dimen/bottom_menu_margin</item>
+        <item name="tint">@color/yp_white</item>
+    </style>
+
+    <style name="ArrowBackStyle">
+        <item name="android:layout_width">@dimen/arrow_back_size</item>
+        <item name="android:layout_height">@dimen/arrow_back_size</item>
+        <item name="android:padding">16dp</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:src">@drawable/arrow_back</item>
+        <item name="tint">@color/yp_white</item>
+        <item name="android:foreground">?attr/selectableItemBackground</item>
+    </style>
+
+    <style name="SearchTextEditStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/search_text_edit_height</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_marginLeft">@dimen/padding</item>
+        <item name="android:layout_marginRight">@dimen/padding</item>
+        <item name="android:background">@drawable/bg_edit_text</item>
+        <item name="android:backgroundTint">@color/yp_white</item>
+        <item name="android:lines">1</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:textColor">@color/yp_black</item>
+        <item name="android:textFontWeight">400</item>
+        <item name="android:textColorHint">@color/yp_black</item>
+        <item name="android:drawableStart">@drawable/search</item>
+        <item name="android:paddingStart">@dimen/icon_button_padding</item>
+        <item name="android:drawableTint">@color/yp_black</item>
+        <item name="android:textSize">@dimen/search_edit_text_size</item>
+        <item name="android:fontFamily">@font/ys_display_regular</item>
+        <item name="android:drawablePadding">@dimen/search_text_edit_drawable_padding</item>
+    </style>
+
+    <style name="ClearSearchIconTheme">
+        <item name="android:layout_width">@dimen/clear_search_icon_size</item>
+        <item name="android:layout_height">@dimen/clear_search_icon_size</item>
+        <item name="android:layout_gravity">center|end</item>
+        <item name="android:layout_marginEnd">28dp</item>
+        <item name="android:src">@drawable/clear</item>
+        <item name="android:foreground">?attr/selectableItemBackground</item>
+        <item name="tint">@color/yp_black</item>
+    </style>
+
 </resources>
