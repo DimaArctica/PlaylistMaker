@@ -50,6 +50,7 @@
         <item name="android:textColor">@color/yp_black</item>
         <item name="android:thumbTint">@color/yp_text_grey</item>
         <item name="android:trackTint">@color/yp_light_gray</item>
+        <item name="android:checked">false</item>
     </style>
 
     <style name="SettingsIconStyle">
