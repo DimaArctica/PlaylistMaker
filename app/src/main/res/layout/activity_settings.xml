@@ -8,17 +8,15 @@
     android:padding="0dp"
     tools:context=".SettingsActivity">
 
-    <LinearLayout style="@style/HeaderLinearLayout">
-
-        <ImageView
-            android:id="@+id/settingsArrowBackButton"
-            style="@style/ArrowBackStyle" />
-
-        <TextView
-            style="@style/PanelHeaderTextStyle"
-            android:text="@string/settings" />
-
-    </LinearLayout>
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/settingsArrowBackButton"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/header_linear_height"
+        app:navigationIcon="@drawable/arrow_back"
+        app:title="@string/settings"
+        app:titleTextAppearance="@style/TitleTextStyle"
+        android:padding="0dp"
+        android:foreground="?attr/selectableItemBackground"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -26,17 +24,15 @@
         android:layout_marginTop="80dp"
         android:orientation="vertical">
 
-        <FrameLayout style="@style/SettingsMenuItem">
-
             <Switch
-                style="@style/SettingsMenuItemText"
+                style="@style/SettingsMenuItem"
+                android:theme="@style/SettingsMenuItemText"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/menu_item_height"
                 android:foreground="?attr/selectableItemBackground"
                 android:gravity="center_vertical"
                 android:text="@string/dark_theme"
                 tools:ignore="UseSwitchCompatOrMaterialXml" />
-        </FrameLayout>
 
         <FrameLayout
             android:id="@+id/shareButton"
@@ -81,71 +77,5 @@
         </FrameLayout>
 
     </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:baselineAligned="false"
-        android:gravity="bottom"
-        android:orientation="vertical">
-
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_gravity="start"
-            android:background="@color/yp_light_gray" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:layout_gravity="bottom"
-            android:baselineAligned="false"
-            android:gravity="bottom"
-            android:orientation="horizontal">
-
-            <FrameLayout style="@style/BottomMenuItem">
-
-                <ImageView
-                    style="@style/BottomMenuItemIcon"
-                    android:src="@drawable/search" />
-
-                <TextView
-                    style="@style/BottomMenuItemText"
-                    android:text="@string/search" />
-
-            </FrameLayout>
-
-            <FrameLayout style="@style/BottomMenuItem">
-
-                <ImageView
-                    style="@style/BottomMenuItemIcon"
-                    android:src="@drawable/media_library" />
-
-                <TextView
-                    style="@style/BottomMenuItemText"
-                    android:text="@string/media_library" />
-
-
-            </FrameLayout>
-
-            <FrameLayout style="@style/BottomMenuItem">
-
-                <ImageView
-                    style="@style/BottomMenuItemIcon"
-                    android:src="@drawable/settings"
-                    app:tint="@color/yp_blue" />
-
-                <TextView
-                    style="@style/BottomMenuItemText"
-                    android:text="@string/settings"
-                    android:textColor="@color/yp_blue" />
-
-            </FrameLayout>
-
-        </LinearLayout>
-
-    </LinearLayout>
-
 
 </FrameLayout>

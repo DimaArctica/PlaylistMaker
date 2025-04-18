@@ -25,6 +25,7 @@
         <item name="android:layout_height">@dimen/menu_item_height</item>
         <item name="android:padding">@dimen/padding</item>
         <item name="android:foreground">?attr/selectableItemBackground</item>
+        <item name="android:thumb">@drawable/thumb</item>
     </style>
 
     <style name="BottomMenuItem">
