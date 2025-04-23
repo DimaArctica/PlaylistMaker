@@ -138,4 +138,8 @@
         <item name="android:textColor">@color/yp_white</item>
     </style>
 
+    <style name="TrackListArrowTheme">
+        <item name="tint">@color/yp_white</item>
+    </style>
+
 </resources>

@@ -24,4 +24,5 @@
     <dimen name="arrow_back_size">48dp</dimen>
     <dimen name="thumb_size">18dp</dimen>
     <dimen name="album_cover_size">45dp</dimen>
+    <dimen name="album_cover_margin_start">13dp</dimen>
 </resources>

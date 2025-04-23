@@ -45,11 +45,35 @@
     <style name="TrackNameSearch">
         <item name="android:textSize">@dimen/search_track_name_text_size</item>
         <item name="android:fontFamily">@font/ys_display_regular</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">top</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:ellipsize">end</item>
     </style>
 
     <style name="SearchArtistNameAndTrackTime">
         <item name="android:textSize">@dimen/search_artist_name_text_size</item>
         <item name="android:fontFamily">@font/ys_display_regular</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <style name="SearchViewAlbumCover">
+        <item name="android:layout_width">@dimen/album_cover_size</item>
+        <item name="android:layout_height">@dimen/album_cover_size</item>
+        <item name="android:layout_gravity">start|center</item>
+        <item name="android:layout_marginStart">@dimen/album_cover_margin_start</item>
+    </style>
+
+    <style name="TrackListArrowStyle">
+        <item name="android:layout_height">24dp</item>
+        <item name="android:layout_width">24dp</item>
+        <item name="android:padding">5dp</item>
+        <item name="android:layout_gravity">end|center</item>
+        <item name="android:layout_margin">12dp</item>
     </style>
 
 </resources>
