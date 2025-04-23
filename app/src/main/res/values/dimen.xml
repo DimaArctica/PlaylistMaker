@@ -5,6 +5,8 @@
     <dimen name="main_button_corner_radius">16dp</dimen>
     <dimen name="settings_text_size">16sp</dimen>
     <dimen name="search_edit_text_size">16sp</dimen>
+    <dimen name="search_track_name_text_size">16sp</dimen>
+    <dimen name="search_artist_name_text_size">11sp</dimen>
     <dimen name="header_linear_margin">4dp</dimen>
     <dimen name="icon_button_padding">8dp</dimen>
     <dimen name="std_margin">16dp</dimen>
@@ -21,4 +23,5 @@
     <dimen name="clear_search_icon_size">12dp</dimen>
     <dimen name="arrow_back_size">48dp</dimen>
     <dimen name="thumb_size">18dp</dimen>
+    <dimen name="album_cover_size">45dp</dimen>
 </resources>

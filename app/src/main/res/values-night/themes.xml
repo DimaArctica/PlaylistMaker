@@ -130,4 +130,12 @@
         <item name="colorControlNormal">@color/yp_white</item>
     </style>
 
+    <style name="TrackNameSearchTheme">
+        <item name="android:textColor">@color/yp_white</item>
+    </style>
+
+    <style name="SearchArtistNameAndTrackTimeTheme">
+        <item name="android:textColor">@color/yp_white</item>
+    </style>
+
 </resources>
