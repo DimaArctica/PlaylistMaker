@@ -13,12 +13,7 @@
         android:src="@drawable/album_cover_placeholder" />
 
     <LinearLayout
-        android:layout_width="0dp"
-        android:layout_weight="1"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginStart="8dp"
-        android:layout_gravity="start|center">
+        style="@style/SearchTrackInfoStyle">
 
         <TextView
             android:id="@+id/trackName"
@@ -30,7 +25,7 @@
             android:id="@+id/artistName"
             style="@style/SearchArtistNameAndTrackTime"
             android:theme="@style/SearchArtistNameAndTrackTimeTheme"
-            tools:text="Artist name • 0:00" />
+            tools:text="Artist name  •  0:00" />
 
     </LinearLayout>
 

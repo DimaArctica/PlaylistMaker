@@ -17,7 +17,7 @@ class TrackListSearchViewHolder(itemView: View): RecyclerView.ViewHolder(itemVie
     @SuppressLint("SetTextI18n", "CheckResult")
     fun bind(track: Track) {
         trackName.text = track.trackName
-        artistName.text = "${track.artistName} • ${track.trackTime}"
+        artistName.text = "${track.artistName}  •  ${track.trackTime}"
         Glide.with(itemView)
             .load(track.artworkUrl100)
             .transform(RoundedCorners(2))
