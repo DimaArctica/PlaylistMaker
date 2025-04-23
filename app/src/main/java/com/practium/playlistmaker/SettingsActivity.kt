@@ -10,6 +10,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.google.android.material.appbar.MaterialToolbar
 
 
 class SettingsActivity : AppCompatActivity() {
@@ -27,9 +28,9 @@ class SettingsActivity : AppCompatActivity() {
         val shareButton = findViewById<FrameLayout>(R.id.shareButton)
         val supportButton = findViewById<FrameLayout>(R.id.supportButton)
         val userAgreementButton = findViewById<FrameLayout>(R.id.userAgreementButton)
-        val goBackArrow = findViewById<ImageView>(R.id.settingsArrowBackButton)
+        val goBackArrow = findViewById<MaterialToolbar>(R.id.settingsArrowBackButton)
 
-        goBackArrow.setOnClickListener {
+        goBackArrow.setNavigationOnClickListener {
             finish()
         }
 
