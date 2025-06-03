@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
 class TrackListSearchAdapter(
-    private val trackList: Array<Track>
+    private val trackList: ArrayList<ITunesSearch>
 ) : RecyclerView.Adapter<TrackListSearchViewHolder> () {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TrackListSearchViewHolder {

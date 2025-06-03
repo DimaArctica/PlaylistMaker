@@ -1,6 +1,7 @@
 package com.practium.playlistmaker
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -14,13 +15,13 @@ class TrackListSearchViewHolder(itemView: View): RecyclerView.ViewHolder(itemVie
     private val artistName: TextView = itemView.findViewById(R.id.artistName)
     private val albumCover: ImageView = itemView.findViewById(R.id.albumCover)
 
-    @SuppressLint("SetTextI18n", "CheckResult")
+    @SuppressLint("SetTextI18n")
     fun bind(track: Track) {
         trackName.text = track.trackName
         artistName.text = "${track.artistName}  •  ${track.trackTime}"
         Glide.with(itemView)
             .load(track.artworkUrl100)
-            .transform(RoundedCorners(2))
+            .transform(RoundedCorners(R.integer.album_cover_corners_rad_int))
             .placeholder(R.drawable.album_cover_placeholder)
             .into(albumCover)
     }
