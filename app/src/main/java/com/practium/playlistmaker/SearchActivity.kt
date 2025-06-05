@@ -5,6 +5,7 @@ import android.content.Context
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.ImageView
@@ -20,43 +21,53 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 class SearchActivity : AppCompatActivity() {
 
     private var searchLine: String = SEARCH_LINE_DEF
 
-    private val iTunesBaseUrl = getString(R.string.itunes_base_url)
-    private val searchEditText = findViewById<EditText>(R.id.searchEditText)
+    private val iTunesBaseUrl = "https://itunes.apple.com"
+    private lateinit var searchEditText: EditText
 
     private val retrofit = Retrofit.Builder()
         .baseUrl(iTunesBaseUrl)
+        .addConverterFactory(GsonConverterFactory.create())
         .build()
 
     private val iTunesService = retrofit.create(ITunesSearchApi::class.java)
-    private val trackList = ArrayList<ITunesSearch>()
+    private val trackList = ArrayList<Track>()
+    private val trackListAdapter = TrackListSearchAdapter(trackList)
 
-    @SuppressLint("MissingInflatedId")
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_search)
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.search_activity)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
 
+        searchEditText = findViewById<EditText>(R.id.searchEditText)
         val goBackArrow = findViewById<MaterialToolbar>(R.id.arrowBackButton)
         val clearButton = findViewById<ImageView>(R.id.clearIcon)
         val recyclerView = findViewById<RecyclerView>(R.id.searchRecyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
 
-
-        val trackListAdapter = TrackListSearchAdapter(trackList)
         recyclerView.adapter = trackListAdapter
 
-
         searchEditText.setText(searchLine)
+
+        searchEditText.setOnEditorActionListener { _, actionId, _ ->
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                search()
+                true
+            }
+            false
+        }
 
         goBackArrow.setNavigationOnClickListener {
             finish()
@@ -98,15 +109,24 @@ class SearchActivity : AppCompatActivity() {
         iTunesService.search(searchEditText.text.toString())
             .enqueue(object : Callback<ITunesSearchResponse> {
 
+                @SuppressLint("NotifyDataSetChanged")
                 override fun onResponse(
                     call: Call<ITunesSearchResponse>,
                     response: Response<ITunesSearchResponse>
                 ) {
-                    TODO("Not yet implemented")
+                    when (response.code()) {
+                        200 -> {
+                            if (response.body()?.results?.isNotEmpty() == true) {
+                                trackList.clear()
+                                trackList.addAll(response.body()?.results!!)
+                                trackListAdapter.notifyDataSetChanged()
+                            }
+                        }
+                    }
                 }
 
                 override fun onFailure(call: Call<ITunesSearchResponse>, t: Throwable) {
-                    TODO("Not yet implemented")
+                    trackList.clear()
                 }
             })
     }
