@@ -16,4 +16,5 @@
     <string name="user_agreement_url">https://yandex.ru/legal/practicum_offer/</string>
     <string name="itunes_base_url">https://itunes.apple.com</string>
     <string name="track_name_time_separator">  •  </string>
+    <string name="artist_info_template">%1$s  •  %2$s</string>
 </resources>
