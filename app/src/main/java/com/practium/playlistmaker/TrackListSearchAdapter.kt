@@ -5,8 +5,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
 class TrackListSearchAdapter(
-    private val trackList: Array<Track>
+    var trackList: ArrayList<Track>
 ) : RecyclerView.Adapter<TrackListSearchViewHolder> () {
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TrackListSearchViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.search_track_list_view, parent, false)
