@@ -17,4 +17,5 @@
     <string name="itunes_base_url">https://itunes.apple.com</string>
     <string name="track_name_time_separator">  •  </string>
     <string name="artist_info_template">%1$s  •  %2$s</string>
+    <string name="nothing_find">Ничего не нашлось</string>
 </resources>

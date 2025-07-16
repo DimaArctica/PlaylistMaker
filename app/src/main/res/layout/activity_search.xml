@@ -40,5 +40,18 @@
         android:id="@+id/searchRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+    
+    <ImageView
+        android:id="@+id/searchPlaceHolderImage"
+        style="@style/NothingFindImageView"
+        android:visibility="visible"
+        />
+
+    <TextView
+        android:id="@+id/searchPlaceHolderText"
+        style="@style/NothingFindTextView"
+        android:text="@string/nothing_find"
+        android:visibility="visible"
+        />
 
 </LinearLayout>
