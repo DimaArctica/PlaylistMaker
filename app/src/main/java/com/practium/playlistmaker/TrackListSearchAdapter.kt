@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
 class TrackListSearchAdapter(
-    var trackList: ArrayList<Track>
+    val trackList: MutableList<Track>
 ) : RecyclerView.Adapter<TrackListSearchViewHolder> () {
 
 

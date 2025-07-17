@@ -25,23 +25,24 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
+const val ITUNES_BASE_URL = "https://itunes.apple.com"
+
 class SearchActivity : AppCompatActivity() {
 
     private var searchLine: String = SEARCH_LINE_DEF
 
-    private val iTunesBaseUrl = "https://itunes.apple.com"
     private lateinit var searchEditText: EditText
     private lateinit var searchPlaceHolderImage: ImageView
     private lateinit var searchPlaceHolderText: TextView
     private lateinit var refreshSearchButton: Button
 
     private val retrofit = Retrofit.Builder()
-        .baseUrl(iTunesBaseUrl)
+        .baseUrl(ITUNES_BASE_URL)
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 
     private val iTunesService = retrofit.create(ITunesSearchApi::class.java)
-    private val trackList = ArrayList<Track>()
+    private val trackList: MutableList<Track> = mutableListOf()
     private val trackListAdapter = TrackListSearchAdapter(trackList)
 
 
@@ -135,9 +136,10 @@ class SearchActivity : AppCompatActivity() {
                     call: Call<ITunesSearchResponse>,
                     response: Response<ITunesSearchResponse>
                 ) {
+                    val responseResult = response.body()?.results
                     when (response.code()) {
                         200 -> {
-                            if (response.body()?.results?.isNotEmpty() == true) {
+                            if (responseResult?.isNotEmpty() == true) {
                                 trackList.clear()
                                 trackList.addAll(response.body()?.results!!)
                                 trackListAdapter.notifyDataSetChanged()

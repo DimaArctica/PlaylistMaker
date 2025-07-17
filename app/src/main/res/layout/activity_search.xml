@@ -59,7 +59,7 @@
         android:id="@+id/refreshSearchButton"
         android:text="@string/RefreshButton"
         style="@style/refreshSearchButton"
-        android:visibility="gone"
+        android:visibility="visible"
         />
 
 </LinearLayout>
