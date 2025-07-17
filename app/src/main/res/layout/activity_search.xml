@@ -43,15 +43,23 @@
     
     <ImageView
         android:id="@+id/searchPlaceHolderImage"
-        style="@style/NothingFindImageView"
-        android:visibility="visible"
+        style="@style/searchPlaceHolderImage"
+        android:visibility="gone"
         />
 
     <TextView
         android:id="@+id/searchPlaceHolderText"
-        style="@style/NothingFindTextView"
+        style="@style/searchPlaceHolderTextView"
         android:text="@string/nothing_find"
-        android:visibility="visible"
+        android:layout_width="312dp"
+        android:visibility="gone"
+        />
+    
+    <Button
+        android:id="@+id/refreshSearchButton"
+        android:text="@string/RefreshButton"
+        style="@style/refreshSearchButton"
+        android:visibility="gone"
         />
 
 </LinearLayout>

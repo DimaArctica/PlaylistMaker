@@ -7,8 +7,10 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
+import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -29,6 +31,9 @@ class SearchActivity : AppCompatActivity() {
 
     private val iTunesBaseUrl = "https://itunes.apple.com"
     private lateinit var searchEditText: EditText
+    private lateinit var searchPlaceHolderImage: ImageView
+    private lateinit var searchPlaceHolderText: TextView
+    private lateinit var refreshSearchButton: Button
 
     private val retrofit = Retrofit.Builder()
         .baseUrl(iTunesBaseUrl)
@@ -52,10 +57,15 @@ class SearchActivity : AppCompatActivity() {
         }
 
         searchEditText = findViewById<EditText>(R.id.searchEditText)
+        searchPlaceHolderImage = findViewById<ImageView>(R.id.searchPlaceHolderImage)
+        searchPlaceHolderText = findViewById<TextView>(R.id.searchPlaceHolderText)
+        refreshSearchButton = findViewById<Button>(R.id.refreshSearchButton)
         val goBackArrow = findViewById<MaterialToolbar>(R.id.arrowBackButton)
         val clearButton = findViewById<ImageView>(R.id.clearIcon)
         val recyclerView = findViewById<RecyclerView>(R.id.searchRecyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+
+        hidePlaceholder()
 
         recyclerView.adapter = trackListAdapter
 
@@ -63,6 +73,8 @@ class SearchActivity : AppCompatActivity() {
 
         searchEditText.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
+                clearSearchResult()
+                hidePlaceholder()
                 search()
                 true
             }
@@ -78,6 +90,7 @@ class SearchActivity : AppCompatActivity() {
             val inputMethodManager =
                 getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
             inputMethodManager?.hideSoftInputFromWindow(clearButton.windowToken, 0)
+            clearSearchResult()
         }
 
         val simpleTextWatcher = object : TextWatcher {
@@ -93,6 +106,13 @@ class SearchActivity : AppCompatActivity() {
             }
         }
         searchEditText.addTextChangedListener(simpleTextWatcher)
+
+        refreshSearchButton.setOnClickListener {
+            clearSearchResult()
+            hidePlaceholder()
+            search()
+        }
+
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -109,6 +129,7 @@ class SearchActivity : AppCompatActivity() {
         iTunesService.search(searchEditText.text.toString())
             .enqueue(object : Callback<ITunesSearchResponse> {
 
+
                 @SuppressLint("NotifyDataSetChanged")
                 override fun onResponse(
                     call: Call<ITunesSearchResponse>,
@@ -120,6 +141,8 @@ class SearchActivity : AppCompatActivity() {
                                 trackList.clear()
                                 trackList.addAll(response.body()?.results!!)
                                 trackListAdapter.notifyDataSetChanged()
+                            } else {
+                                showPlaceholder(Placeholder.NOTHING_FIND)
                             }
                         }
                     }
@@ -127,6 +150,7 @@ class SearchActivity : AppCompatActivity() {
 
                 override fun onFailure(call: Call<ITunesSearchResponse>, t: Throwable) {
                     trackList.clear()
+                    showPlaceholder(Placeholder.NO_CONNECTION)
                 }
             })
     }
@@ -134,5 +158,41 @@ class SearchActivity : AppCompatActivity() {
     companion object {
         const val SEARCH_LINE = "SEARCH_LINE"
         const val SEARCH_LINE_DEF = ""
+    }
+
+    private fun showPlaceholder(placeholder: Placeholder){
+        when (placeholder) {
+            Placeholder.NOTHING_FIND -> {
+                searchPlaceHolderImage.isVisible = true
+                searchPlaceHolderText.isVisible = true
+                searchPlaceHolderImage.setImageResource(R.drawable.nothing_find)
+                searchPlaceHolderText.setText(R.string.nothing_find)
+            }
+            Placeholder.NO_CONNECTION -> {
+                searchPlaceHolderImage.isVisible = true
+                searchPlaceHolderText.isVisible = true
+                refreshSearchButton.isVisible = true
+                searchPlaceHolderImage.setImageResource(R.drawable.no_connection)
+                searchPlaceHolderText.setText(R.string.connection_error)
+            }
+        }
+    }
+
+    private fun hidePlaceholder() {
+
+        searchPlaceHolderImage.isVisible = false
+        searchPlaceHolderText.isVisible = false
+        refreshSearchButton.isVisible = false
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    private fun clearSearchResult(){
+        trackList.clear()
+        trackListAdapter.notifyDataSetChanged()
+    }
+
+    enum class Placeholder {
+        NOTHING_FIND,
+        NO_CONNECTION
     }
 }
