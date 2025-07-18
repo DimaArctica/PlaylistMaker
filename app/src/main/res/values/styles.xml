@@ -69,11 +69,11 @@
     </style>
 
     <style name="TrackListArrowStyle">
-        <item name="android:layout_height">24dp</item>
-        <item name="android:layout_width">24dp</item>
-        <item name="android:padding">5dp</item>
+        <item name="android:layout_height">@dimen/track_list_arrow_height</item>
+        <item name="android:layout_width">@dimen/track_list_arrow_width</item>
+        <item name="android:padding">@dimen/track_list_arrow_padding</item>
         <item name="android:layout_gravity">end|center</item>
-        <item name="android:layout_margin">12dp</item>
+        <item name="android:layout_margin">@dimen/track_list_arrow_margin</item>
     </style>
 
     <style name="SearchTrackInfoStyle">

@@ -26,7 +26,9 @@
                 android:id="@+id/searchEditText"
                 style="@style/SearchTextEditStyle"
                 android:hint="@string/search_hint"
-                android:cursorVisible="true"/>
+                android:cursorVisible="true"
+                android:imeOptions="actionDone"
+                android:singleLine="true"/>
 
             <ImageView
                 android:id="@+id/clearIcon"
@@ -38,5 +40,26 @@
         android:id="@+id/searchRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+    
+    <ImageView
+        android:id="@+id/searchPlaceHolderImage"
+        style="@style/searchPlaceHolderImage"
+        android:visibility="gone"
+        />
+
+    <TextView
+        android:id="@+id/searchPlaceHolderText"
+        style="@style/searchPlaceHolderTextView"
+        android:text="@string/nothing_find"
+        android:layout_width="312dp"
+        android:visibility="gone"
+        />
+    
+    <Button
+        android:id="@+id/refreshSearchButton"
+        android:text="@string/RefreshButton"
+        style="@style/refreshSearchButton"
+        android:visibility="visible"
+        />
 
 </LinearLayout>
