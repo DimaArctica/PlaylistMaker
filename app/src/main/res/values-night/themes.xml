@@ -45,8 +45,8 @@
         <item name="android:gravity">start</item>
         <item name="android:textSize">@dimen/settings_text_size</item>
         <item name="android:textColor">@color/yp_white</item>
-        <item name="android:thumbTint">@color/yp_blue</item>
-        <item name="android:trackTint">@color/yp_blue_light</item>
+        <item name="thumbTint">@color/yp_blue</item>
+        <item name="trackTint">@color/yp_blue_light</item>
         <item name="android:checked">true</item>
     </style>
 

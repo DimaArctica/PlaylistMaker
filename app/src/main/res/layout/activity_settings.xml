@@ -24,15 +24,16 @@
         android:layout_marginTop="80dp"
         android:orientation="vertical">
 
-            <Switch
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/themeSwitcher"
                 style="@style/SettingsMenuItem"
                 android:theme="@style/SettingsMenuItemText"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/menu_item_height"
                 android:foreground="?attr/selectableItemBackground"
-                android:gravity="center_vertical"
+                android:gravity="start"
                 android:text="@string/dark_theme"
-                tools:ignore="UseSwitchCompatOrMaterialXml" />
+                tools:ignore="UseSwitchCompatOrMaterialXml"/>
 
         <FrameLayout
             android:id="@+id/shareButton"
