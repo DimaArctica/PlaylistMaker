@@ -1,7 +1,6 @@
 package com.practium.playlistmaker
 
 import android.app.Application
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatDelegate
 
 const val PLAYLIST_MAKER_PREFERENCES = "playlist_maker_preferences"

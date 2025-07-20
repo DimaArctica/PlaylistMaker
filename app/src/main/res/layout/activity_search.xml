@@ -59,7 +59,30 @@
         android:id="@+id/refreshSearchButton"
         android:text="@string/RefreshButton"
         style="@style/refreshSearchButton"
-        android:visibility="visible"
+        android:visibility="gone"
         />
+
+    <LinearLayout
+        android:id="@+id/searchHistoryLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingTop="24dp"
+        android:visibility="visible">
+        <TextView
+            style="@style/searchHistoryTextView"
+            android:text="@string/you_searched_for"
+            />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/searchHistoryRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <Button
+            android:id="@+id/clearSearchHistoryButton"
+            android:text="@string/clear_search_history"
+            style="@style/clearSearchHistoryButton"
+            android:layout_marginTop="34dp"
+            />
+    </LinearLayout>
 
 </LinearLayout>

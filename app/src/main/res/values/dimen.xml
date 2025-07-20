@@ -39,4 +39,10 @@
     <dimen name="track_list_arrow_width">24dp</dimen>
     <dimen name="track_list_arrow_padding">5dp</dimen>
     <dimen name="track_list_arrow_margin">12dp</dimen>
+    <dimen name="search_history_title_text_size">19sp</dimen>
+    <dimen name="clear_search_history_button_width">148dp</dimen>
+    <dimen name="clear_search_history_button_height">36dp</dimen>
+    <dimen name="clear_search_history_button_marginTop">24dp</dimen>
+    <dimen name="clear_search_history_button_textSize">14sp</dimen>
+    <dimen name="clear_search_history_button_corner_radius">54dp</dimen>
 </resources>
