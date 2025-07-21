@@ -16,6 +16,9 @@ class TrackListSearchAdapter(
 
     override fun onBindViewHolder(holder: TrackListSearchViewHolder, position: Int) {
         holder.bind(trackList[position])
+        holder.itemView.setOnClickListener {
+            TODO()
+        }
     }
 
     override fun getItemCount(): Int {

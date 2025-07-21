@@ -11,11 +11,24 @@ class SearchHistory(private val sharedPrefs: SharedPreferences) {
 
     fun addTrackToSearchHistory(track: Track){
         searchHistory = getSearchHistory()
-
+        for (trackTemp in searchHistory) {
+            if (trackTemp.trackId == track.trackId) {
+                searchHistory.remove(trackTemp)
+                searchHistory.add(track)
+                return
+            }
+        }
+        if (searchHistory.count() == 10) {
+            searchHistory.removeAt(10)
+        }
+        searchHistory.add(track)
     }
 
     fun clearSearchHistory(){
         searchHistory.clear()
+        val json = Gson().toJson(searchHistory)
+        sharedPrefs.edit()
+            .putString(SEARCH_HISTORY_LIST,json)
     }
 
     fun getSearchHistory(): ArrayList<Track>{

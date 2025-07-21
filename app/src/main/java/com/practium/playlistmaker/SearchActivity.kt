@@ -2,6 +2,7 @@ package com.practium.playlistmaker
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -35,6 +36,9 @@ class SearchActivity : AppCompatActivity() {
     private lateinit var searchPlaceHolderImage: ImageView
     private lateinit var searchPlaceHolderText: TextView
     private lateinit var refreshSearchButton: Button
+    private lateinit var searchHistoryRecyclerView: RecyclerView
+    private lateinit var clearSearchHistoryButton: Button
+    private val searchHistory: SearchHistory = SearchHistory(getSharedPreferences(PLAYLIST_MAKER_PREFERENCES, MODE_PRIVATE))
 
     private val retrofit = Retrofit.Builder()
         .baseUrl(ITUNES_BASE_URL)
@@ -44,6 +48,7 @@ class SearchActivity : AppCompatActivity() {
     private val iTunesService = retrofit.create(ITunesSearchApi::class.java)
     private val trackList: MutableList<Track> = mutableListOf()
     private val trackListAdapter = TrackListSearchAdapter(trackList)
+    private lateinit var searchHistoryListAdapter: TrackListSearchAdapter
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -61,6 +66,8 @@ class SearchActivity : AppCompatActivity() {
         searchPlaceHolderImage = findViewById<ImageView>(R.id.searchPlaceHolderImage)
         searchPlaceHolderText = findViewById<TextView>(R.id.searchPlaceHolderText)
         refreshSearchButton = findViewById<Button>(R.id.refreshSearchButton)
+        searchHistoryRecyclerView = findViewById<RecyclerView>(R.id.searchHistoryRecyclerView)
+        clearSearchHistoryButton= findViewById<Button>(R.id.clearSearchHistoryButton)
         val goBackArrow = findViewById<MaterialToolbar>(R.id.arrowBackButton)
         val clearButton = findViewById<ImageView>(R.id.clearIcon)
         val recyclerView = findViewById<RecyclerView>(R.id.searchRecyclerView)
@@ -69,6 +76,8 @@ class SearchActivity : AppCompatActivity() {
         hidePlaceholder()
 
         recyclerView.adapter = trackListAdapter
+        searchHistoryListAdapter = TrackListSearchAdapter(searchHistory.getSearchHistory())
+        searchHistoryRecyclerView.adapter = searchHistoryListAdapter
 
         searchEditText.setText(searchLine)
 
