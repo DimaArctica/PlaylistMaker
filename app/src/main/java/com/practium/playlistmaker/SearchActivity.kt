@@ -12,6 +12,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -38,7 +39,7 @@ class SearchActivity : AppCompatActivity() {
     private lateinit var refreshSearchButton: Button
     private lateinit var searchHistoryRecyclerView: RecyclerView
     private lateinit var clearSearchHistoryButton: Button
-    private val searchHistory: SearchHistory = SearchHistory(getSharedPreferences(PLAYLIST_MAKER_PREFERENCES, MODE_PRIVATE))
+    private lateinit var searchHistory: SearchHistory
 
     private val retrofit = Retrofit.Builder()
         .baseUrl(ITUNES_BASE_URL)
@@ -47,7 +48,8 @@ class SearchActivity : AppCompatActivity() {
 
     private val iTunesService = retrofit.create(ITunesSearchApi::class.java)
     private val trackList: MutableList<Track> = mutableListOf()
-    private val trackListAdapter = TrackListSearchAdapter(trackList)
+    private var searchHistoryList: ArrayList<Track> = ArrayList()
+    private lateinit var trackListAdapter: TrackListSearchAdapter
     private lateinit var searchHistoryListAdapter: TrackListSearchAdapter
 
 
@@ -71,12 +73,33 @@ class SearchActivity : AppCompatActivity() {
         val goBackArrow = findViewById<MaterialToolbar>(R.id.arrowBackButton)
         val clearButton = findViewById<ImageView>(R.id.clearIcon)
         val recyclerView = findViewById<RecyclerView>(R.id.searchRecyclerView)
-        recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        val searchHistoryRecyclerView = findViewById<RecyclerView>(R.id.searchHistoryRecyclerView)
+        val sharedPrefs = getSharedPreferences(PLAYLIST_MAKER_PREFERENCES, MODE_PRIVATE)
+
+/*        val testSearchHistoryArrayList: ArrayList<Track> = ArrayList()
+        testSearchHistoryArrayList.add(Track("Track1", "Artist", 11111,"",1))
+        testSearchHistoryArrayList.add(Track("Track2", "Artist_0", 11122,"",2))
+        testSearchHistoryArrayList.add(Track("Track3", "Artist_1", 11133,"",3))
+*/
 
         hidePlaceholder()
 
+        recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        searchHistoryRecyclerView.layoutManager  = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+
+        trackListAdapter = TrackListSearchAdapter(trackList,
+            onTrackClick = {track ->
+            clickOnTrack(track, sharedPrefs)
+        })
         recyclerView.adapter = trackListAdapter
-        searchHistoryListAdapter = TrackListSearchAdapter(searchHistory.getSearchHistory())
+
+        searchHistory = SearchHistory()
+        //searchHistoryList = searchHistory.getSearchHistoryFromPrefs(sharedPrefs)
+        searchHistoryList = ArrayList<Track>()
+        searchHistoryListAdapter = TrackListSearchAdapter(
+            searchHistoryList,
+            onTrackClick = {})
+
         searchHistoryRecyclerView.adapter = searchHistoryListAdapter
 
         searchEditText.setText(searchLine)
@@ -121,6 +144,10 @@ class SearchActivity : AppCompatActivity() {
             clearSearchResult()
             hidePlaceholder()
             search()
+        }
+
+        clearSearchHistoryButton.setOnClickListener {
+            clearSearchHistory(sharedPrefs)
         }
 
     }
@@ -190,7 +217,6 @@ class SearchActivity : AppCompatActivity() {
     }
 
     private fun hidePlaceholder() {
-
         searchPlaceHolderImage.isVisible = false
         searchPlaceHolderText.isVisible = false
         refreshSearchButton.isVisible = false
@@ -200,6 +226,23 @@ class SearchActivity : AppCompatActivity() {
     private fun clearSearchResult(){
         trackList.clear()
         trackListAdapter.notifyDataSetChanged()
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    private fun clearSearchHistory(sharedPrefs: SharedPreferences){
+        searchHistoryList.clear()
+        searchHistory.clearSearchHistory(sharedPrefs)
+        searchHistoryListAdapter.notifyDataSetChanged()
+        Toast.makeText(this, "История поиска очищена", Toast.LENGTH_SHORT).show()
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    private fun clickOnTrack(track: Track, sharedPrefs: SharedPreferences){
+        searchHistoryList.clear()
+        searchHistory.addTrackToSearchHistory(sharedPrefs, track)
+        searchHistoryList.addAll(searchHistory.getSearchHistory())
+        searchHistoryListAdapter.notifyDataSetChanged()
+        Toast.makeText(this, "Трек ${track.trackName} добавлен в историю", Toast.LENGTH_SHORT).show()
     }
 
     enum class Placeholder {
