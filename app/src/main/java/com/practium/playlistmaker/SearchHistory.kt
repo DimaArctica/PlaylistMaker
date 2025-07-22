@@ -1,8 +1,6 @@
 package com.practium.playlistmaker
 
-import android.app.Person
 import android.content.SharedPreferences
-import androidx.privacysandbox.tools.core.model.Type
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
@@ -33,10 +31,10 @@ class SearchHistory {
     }
 
     fun clearSearchHistory(sharedPrefs: SharedPreferences){
-//        searchHistory.clear()
-//        sharedPrefs.edit().
-//            clear().
-//            apply()
+        searchHistory.clear()
+        sharedPrefs.edit().
+            clear().
+            apply()
     }
 
     fun getSearchHistoryFromPrefs(sharedPrefs: SharedPreferences): ArrayList<Track>{
