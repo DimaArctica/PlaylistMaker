@@ -16,7 +16,7 @@ class SearchHistory {
         for (trackTemp in searchHistory) {
             if (trackTemp.trackId == track.trackId) {
                 searchHistory.remove(trackTemp)
-                searchHistory.add(track)
+                searchHistory.add(0, track)
                 savePrefs(sharedPrefs)
                 return searchHistory
             }

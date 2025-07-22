@@ -68,7 +68,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:paddingTop="24dp"
-        android:visibility="visible">
+        android:visibility="gone">
         <TextView
             style="@style/searchHistoryTextView"
             android:text="@string/you_searched_for"

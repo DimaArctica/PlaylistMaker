@@ -6,11 +6,13 @@ import android.content.SharedPreferences
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -74,13 +76,8 @@ class SearchActivity : AppCompatActivity() {
         val clearButton = findViewById<ImageView>(R.id.clearIcon)
         val recyclerView = findViewById<RecyclerView>(R.id.searchRecyclerView)
         val searchHistoryRecyclerView = findViewById<RecyclerView>(R.id.searchHistoryRecyclerView)
+        val searchHistoryLayout = findViewById<LinearLayout>(R.id.searchHistoryLayout)
         val sharedPrefs = getSharedPreferences(PLAYLIST_MAKER_PREFERENCES, MODE_PRIVATE)
-
-        val testSearchHistoryArrayList: ArrayList<Track> = ArrayList()
-        testSearchHistoryArrayList.add(Track("Track1", "Artist", 11111,"",1))
-        testSearchHistoryArrayList.add(Track("Track2", "Artist_0", 11122,"",2))
-        testSearchHistoryArrayList.add(Track("Track3", "Artist_1", 11133,"",3))
-
 
         hidePlaceholder()
 
@@ -95,7 +92,6 @@ class SearchActivity : AppCompatActivity() {
 
         searchHistory = SearchHistory()
         searchHistoryList.addAll(searchHistory.getSearchHistoryFromPrefs(sharedPrefs))
-        //searchHistoryList = ArrayList<Track>()
         searchHistoryListAdapter = TrackListSearchAdapter(
             searchHistoryList,
             onTrackClick = {track ->
@@ -125,6 +121,7 @@ class SearchActivity : AppCompatActivity() {
                 getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
             inputMethodManager?.hideSoftInputFromWindow(clearButton.windowToken, 0)
             clearSearchResult()
+            searchEditText.clearFocus()
         }
 
         val simpleTextWatcher = object : TextWatcher {
@@ -141,6 +138,14 @@ class SearchActivity : AppCompatActivity() {
         }
         searchEditText.addTextChangedListener(simpleTextWatcher)
 
+        searchEditText.setOnFocusChangeListener { view, hasFocus ->
+            searchHistoryLayout.visibility =
+                if (hasFocus
+                    && searchEditText.text.isEmpty()
+                    && searchHistoryList.isNotEmpty()) View.VISIBLE
+                else View.GONE
+        }
+
         refreshSearchButton.setOnClickListener {
             clearSearchResult()
             hidePlaceholder()
@@ -149,6 +154,8 @@ class SearchActivity : AppCompatActivity() {
 
         clearSearchHistoryButton.setOnClickListener {
             clearSearchHistory(sharedPrefs)
+            searchEditText.clearFocus()
+            searchHistoryLayout.visibility = View.GONE
         }
 
     }
@@ -194,11 +201,6 @@ class SearchActivity : AppCompatActivity() {
             })
     }
 
-    companion object {
-        const val SEARCH_LINE = "SEARCH_LINE"
-        const val SEARCH_LINE_DEF = ""
-    }
-
     private fun showPlaceholder(placeholder: Placeholder){
         when (placeholder) {
             Placeholder.NOTHING_FIND -> {
@@ -234,7 +236,6 @@ class SearchActivity : AppCompatActivity() {
         searchHistoryList.clear()
         searchHistory.clearSearchHistory(sharedPrefs)
         searchHistoryListAdapter.notifyDataSetChanged()
-        Toast.makeText(this, "История поиска очищена", Toast.LENGTH_SHORT).show()
     }
 
     @SuppressLint("NotifyDataSetChanged")
@@ -243,11 +244,16 @@ class SearchActivity : AppCompatActivity() {
         searchHistory.addTrackToSearchHistory(sharedPrefs, track)
         searchHistoryList.addAll(searchHistory.getSearchHistory())
         searchHistoryListAdapter.notifyDataSetChanged()
-        Toast.makeText(this, "Трек ${track.trackName} добавлен в историю", Toast.LENGTH_SHORT).show()
+    }
+
+    companion object {
+        const val SEARCH_LINE = "SEARCH_LINE"
+        const val SEARCH_LINE_DEF = ""
     }
 
     enum class Placeholder {
         NOTHING_FIND,
         NO_CONNECTION
     }
+
 }
