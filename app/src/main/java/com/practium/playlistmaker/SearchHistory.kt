@@ -1,7 +1,10 @@
 package com.practium.playlistmaker
 
+import android.app.Person
 import android.content.SharedPreferences
+import androidx.privacysandbox.tools.core.model.Type
 import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 
 const val SEARCH_HISTORY_LIST = "search_history_list"
 const val SEARCH_HISTORY_COUNT = 10
@@ -9,39 +12,42 @@ const val SEARCH_HISTORY_COUNT = 10
 class SearchHistory {
 
     private var searchHistory: ArrayList<Track> = ArrayList()
+    private val type = object : TypeToken<ArrayList<Track>>() {}.type
 
-    fun addTrackToSearchHistory(sharedPrefs: SharedPreferences, track: Track){
-        //searchHistory = getSearchHistoryFromPrefs(sharedPrefs)
+    fun addTrackToSearchHistory(sharedPrefs: SharedPreferences, track: Track): ArrayList<Track>{
         for (trackTemp in searchHistory) {
             if (trackTemp.trackId == track.trackId) {
                 searchHistory.remove(trackTemp)
                 searchHistory.add(track)
-                return
+                savePrefs(sharedPrefs)
+                return searchHistory
             }
         }
         if (searchHistory.count() >= SEARCH_HISTORY_COUNT) {
             searchHistory.removeAt(SEARCH_HISTORY_COUNT - 1)
         }
         searchHistory.add(0, track)
-        //savePrefs(sharedPrefs)
-        return
+        savePrefs(sharedPrefs)
+
+        return searchHistory
     }
 
-    fun clearSearchHistory(sharedPrefs: SharedPreferences): ArrayList<Track>{
-        searchHistory.clear()
+    fun clearSearchHistory(sharedPrefs: SharedPreferences){
+//        searchHistory.clear()
 //        sharedPrefs.edit().
 //            clear().
 //            apply()
-        return searchHistory
     }
 
     fun getSearchHistoryFromPrefs(sharedPrefs: SharedPreferences): ArrayList<Track>{
         val json = sharedPrefs.getString(SEARCH_HISTORY_LIST, null)
+        val emptySearchHistoryArray: ArrayList<Track> = ArrayList<Track>()
         if (json != null) {
-            return Gson().fromJson(json, ArrayList<Track>()::class.java)
+            searchHistory.addAll(Gson().fromJson(json, type))
         } else {
-            return ArrayList<Track>()
+            return emptySearchHistoryArray
         }
+        return searchHistory
     }
 
     fun getSearchHistory(): ArrayList<Track>{

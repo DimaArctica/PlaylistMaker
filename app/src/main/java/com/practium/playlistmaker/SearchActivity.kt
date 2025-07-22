@@ -50,7 +50,7 @@ class SearchActivity : AppCompatActivity() {
     private val trackList: MutableList<Track> = mutableListOf()
     private var searchHistoryList: ArrayList<Track> = ArrayList()
     private lateinit var trackListAdapter: TrackListSearchAdapter
-    private lateinit var searchHistoryListAdapter: TrackListSearchAdapter
+    private lateinit var searchHistoryListAdapter: SearchHistoryListAdapter
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -76,11 +76,11 @@ class SearchActivity : AppCompatActivity() {
         val searchHistoryRecyclerView = findViewById<RecyclerView>(R.id.searchHistoryRecyclerView)
         val sharedPrefs = getSharedPreferences(PLAYLIST_MAKER_PREFERENCES, MODE_PRIVATE)
 
-/*        val testSearchHistoryArrayList: ArrayList<Track> = ArrayList()
+        val testSearchHistoryArrayList: ArrayList<Track> = ArrayList()
         testSearchHistoryArrayList.add(Track("Track1", "Artist", 11111,"",1))
         testSearchHistoryArrayList.add(Track("Track2", "Artist_0", 11122,"",2))
         testSearchHistoryArrayList.add(Track("Track3", "Artist_1", 11133,"",3))
-*/
+
 
         hidePlaceholder()
 
@@ -94,9 +94,9 @@ class SearchActivity : AppCompatActivity() {
         recyclerView.adapter = trackListAdapter
 
         searchHistory = SearchHistory()
-        //searchHistoryList = searchHistory.getSearchHistoryFromPrefs(sharedPrefs)
-        searchHistoryList = ArrayList<Track>()
-        searchHistoryListAdapter = TrackListSearchAdapter(
+        searchHistoryList.addAll(searchHistory.getSearchHistoryFromPrefs(sharedPrefs))
+        //searchHistoryList = ArrayList<Track>()
+        searchHistoryListAdapter = SearchHistoryListAdapter(
             searchHistoryList,
             onTrackClick = {})
 
@@ -146,9 +146,9 @@ class SearchActivity : AppCompatActivity() {
             search()
         }
 
-        clearSearchHistoryButton.setOnClickListener {
-            clearSearchHistory(sharedPrefs)
-        }
+//        clearSearchHistoryButton.setOnClickListener {
+//            //clearSearchHistory(sharedPrefs)
+//        }
 
     }
 
@@ -230,9 +230,9 @@ class SearchActivity : AppCompatActivity() {
 
     @SuppressLint("NotifyDataSetChanged")
     private fun clearSearchHistory(sharedPrefs: SharedPreferences){
-        searchHistoryList.clear()
-        searchHistory.clearSearchHistory(sharedPrefs)
-        searchHistoryListAdapter.notifyDataSetChanged()
+//        searchHistoryList.clear()
+//        searchHistory.clearSearchHistory(sharedPrefs)
+//        searchHistoryListAdapter.notifyDataSetChanged()
         Toast.makeText(this, "История поиска очищена", Toast.LENGTH_SHORT).show()
     }
 
