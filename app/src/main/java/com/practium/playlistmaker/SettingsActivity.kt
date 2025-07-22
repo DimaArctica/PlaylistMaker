@@ -1,16 +1,15 @@
 package com.practium.playlistmaker
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.widget.FrameLayout
-import android.widget.ImageView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.google.android.material.appbar.MaterialToolbar
+import com.google.android.material.switchmaterial.SwitchMaterial
 
 
 class SettingsActivity : AppCompatActivity() {
@@ -29,9 +28,16 @@ class SettingsActivity : AppCompatActivity() {
         val supportButton = findViewById<FrameLayout>(R.id.supportButton)
         val userAgreementButton = findViewById<FrameLayout>(R.id.userAgreementButton)
         val goBackArrow = findViewById<MaterialToolbar>(R.id.settingsArrowBackButton)
+        val themeSwitcher = findViewById<SwitchMaterial>(R.id.themeSwitcher)
+
+        themeSwitcher.isChecked = (applicationContext as App).darkTheme
 
         goBackArrow.setNavigationOnClickListener {
             finish()
+        }
+
+        themeSwitcher.setOnCheckedChangeListener { switcher, checked ->
+            (applicationContext as App).switchTheme(checked)
         }
 
         shareButton.setOnClickListener {

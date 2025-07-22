@@ -2,15 +2,19 @@ package com.practium.playlistmaker
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -35,6 +39,9 @@ class SearchActivity : AppCompatActivity() {
     private lateinit var searchPlaceHolderImage: ImageView
     private lateinit var searchPlaceHolderText: TextView
     private lateinit var refreshSearchButton: Button
+    private lateinit var searchHistoryRecyclerView: RecyclerView
+    private lateinit var clearSearchHistoryButton: Button
+    private lateinit var searchHistory: SearchHistory
 
     private val retrofit = Retrofit.Builder()
         .baseUrl(ITUNES_BASE_URL)
@@ -43,7 +50,9 @@ class SearchActivity : AppCompatActivity() {
 
     private val iTunesService = retrofit.create(ITunesSearchApi::class.java)
     private val trackList: MutableList<Track> = mutableListOf()
-    private val trackListAdapter = TrackListSearchAdapter(trackList)
+    private var searchHistoryList: ArrayList<Track> = ArrayList()
+    private lateinit var trackListAdapter: TrackListSearchAdapter
+    private lateinit var searchHistoryListAdapter: TrackListSearchAdapter
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -61,14 +70,34 @@ class SearchActivity : AppCompatActivity() {
         searchPlaceHolderImage = findViewById<ImageView>(R.id.searchPlaceHolderImage)
         searchPlaceHolderText = findViewById<TextView>(R.id.searchPlaceHolderText)
         refreshSearchButton = findViewById<Button>(R.id.refreshSearchButton)
+        searchHistoryRecyclerView = findViewById<RecyclerView>(R.id.searchHistoryRecyclerView)
+        clearSearchHistoryButton= findViewById<Button>(R.id.clearSearchHistoryButton)
         val goBackArrow = findViewById<MaterialToolbar>(R.id.arrowBackButton)
         val clearButton = findViewById<ImageView>(R.id.clearIcon)
         val recyclerView = findViewById<RecyclerView>(R.id.searchRecyclerView)
-        recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        val searchHistoryRecyclerView = findViewById<RecyclerView>(R.id.searchHistoryRecyclerView)
+        val searchHistoryLayout = findViewById<LinearLayout>(R.id.searchHistoryLayout)
+        val sharedPrefs = getSharedPreferences(PLAYLIST_MAKER_PREFERENCES, MODE_PRIVATE)
 
         hidePlaceholder()
 
+        recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        searchHistoryRecyclerView.layoutManager  = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+
+        trackListAdapter = TrackListSearchAdapter(trackList,
+            onTrackClick = {track ->
+            clickOnTrack(track, sharedPrefs)
+        })
         recyclerView.adapter = trackListAdapter
+
+        searchHistory = SearchHistory()
+        searchHistoryList.addAll(searchHistory.getSearchHistoryFromPrefs(sharedPrefs))
+        searchHistoryListAdapter = TrackListSearchAdapter(
+            searchHistoryList,
+            onTrackClick = {track ->
+                clickOnTrack(track, sharedPrefs)})
+
+        searchHistoryRecyclerView.adapter = searchHistoryListAdapter
 
         searchEditText.setText(searchLine)
 
@@ -92,6 +121,7 @@ class SearchActivity : AppCompatActivity() {
                 getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
             inputMethodManager?.hideSoftInputFromWindow(clearButton.windowToken, 0)
             clearSearchResult()
+            searchEditText.clearFocus()
         }
 
         val simpleTextWatcher = object : TextWatcher {
@@ -108,10 +138,24 @@ class SearchActivity : AppCompatActivity() {
         }
         searchEditText.addTextChangedListener(simpleTextWatcher)
 
+        searchEditText.setOnFocusChangeListener { view, hasFocus ->
+            searchHistoryLayout.visibility =
+                if (hasFocus
+                    && searchEditText.text.isEmpty()
+                    && searchHistoryList.isNotEmpty()) View.VISIBLE
+                else View.GONE
+        }
+
         refreshSearchButton.setOnClickListener {
             clearSearchResult()
             hidePlaceholder()
             search()
+        }
+
+        clearSearchHistoryButton.setOnClickListener {
+            clearSearchHistory(sharedPrefs)
+            searchEditText.clearFocus()
+            searchHistoryLayout.visibility = View.GONE
         }
 
     }
@@ -157,11 +201,6 @@ class SearchActivity : AppCompatActivity() {
             })
     }
 
-    companion object {
-        const val SEARCH_LINE = "SEARCH_LINE"
-        const val SEARCH_LINE_DEF = ""
-    }
-
     private fun showPlaceholder(placeholder: Placeholder){
         when (placeholder) {
             Placeholder.NOTHING_FIND -> {
@@ -181,7 +220,6 @@ class SearchActivity : AppCompatActivity() {
     }
 
     private fun hidePlaceholder() {
-
         searchPlaceHolderImage.isVisible = false
         searchPlaceHolderText.isVisible = false
         refreshSearchButton.isVisible = false
@@ -193,8 +231,29 @@ class SearchActivity : AppCompatActivity() {
         trackListAdapter.notifyDataSetChanged()
     }
 
+    @SuppressLint("NotifyDataSetChanged")
+    private fun clearSearchHistory(sharedPrefs: SharedPreferences){
+        searchHistoryList.clear()
+        searchHistory.clearSearchHistory(sharedPrefs)
+        searchHistoryListAdapter.notifyDataSetChanged()
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    private fun clickOnTrack(track: Track, sharedPrefs: SharedPreferences){
+        searchHistoryList.clear()
+        searchHistory.addTrackToSearchHistory(sharedPrefs, track)
+        searchHistoryList.addAll(searchHistory.getSearchHistory())
+        searchHistoryListAdapter.notifyDataSetChanged()
+    }
+
+    companion object {
+        const val SEARCH_LINE = "SEARCH_LINE"
+        const val SEARCH_LINE_DEF = ""
+    }
+
     enum class Placeholder {
         NOTHING_FIND,
         NO_CONNECTION
     }
+
 }

@@ -5,7 +5,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
 class TrackListSearchAdapter(
-    val trackList: MutableList<Track>
+    private val trackList: MutableList<Track>,
+    private val onTrackClick: (Track) -> Unit
 ) : RecyclerView.Adapter<TrackListSearchViewHolder> () {
 
 
@@ -16,6 +17,10 @@ class TrackListSearchAdapter(
 
     override fun onBindViewHolder(holder: TrackListSearchViewHolder, position: Int) {
         holder.bind(trackList[position])
+        holder.itemView.setOnClickListener {
+            val clickTrack = trackList[position]
+            onTrackClick.invoke(clickTrack)
+        }
     }
 
     override fun getItemCount(): Int {
