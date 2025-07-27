@@ -45,4 +45,12 @@
     <dimen name="clear_search_history_button_marginTop">24dp</dimen>
     <dimen name="clear_search_history_button_textSize">14sp</dimen>
     <dimen name="clear_search_history_button_corner_radius">54dp</dimen>
+    <dimen name="margin_std_1">8dp</dimen>
+    <dimen name="margin_std_2">16dp</dimen>
+    <dimen name="margin_std_3">32dp</dimen>
+    <dimen name="margin_std_4">64dp</dimen>
+    <dimen name="trackInfoTextSize">13sp</dimen>
+    <dimen name="trackDurationTextSizeInPlayer">14sp</dimen>
+    <dimen name="playPauseButtonSize">100dp</dimen>
+    <dimen name="addToPlaylistAndLikedButtonsSize">51dp</dimen>
 </resources>

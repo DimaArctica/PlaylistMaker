@@ -1,5 +1,6 @@
 [versions]
-agp = "8.9.1"
+agp = "8.11.1"
+constraintlayoutVersion = "2.0.0"
 glide = "4.14.2"
 kotlin = "2.1.0"
 coreKtx = "1.15.0"
@@ -14,6 +15,7 @@ retrofit = "2.9.0"
 toolsCore = "1.0.0-alpha13"
 
 [libraries]
+androidx-constraintlayout-v200 = { module = "androidx.constraintlayout:constraintlayout", version.ref = "constraintlayoutVersion" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 compiler = { module = "com.github.bumptech.glide:compiler", version.ref = "glide" }
 converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retrofit" }
