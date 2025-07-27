@@ -22,4 +22,16 @@
     <string name="RefreshButton">Обновить</string>
     <string name="you_searched_for">Вы искали</string>
     <string name="clear_search_history">Очистить историю</string>
+    <string name="duration">Длительность</string>
+    <string name="Album">Альбом</string>
+    <string name="Year">Год</string>
+    <string name="Genre">Жанр</string>
+    <string name="Country">Страна</string>
+    <string name="track_name">Название композиции</string>
+    <string name="artist_name">Имя артиста</string>
+    <string name="zero_duration">0:00</string>
+    <string name="play_pause">Играть/пауза</string>
+    <string name="add_to_playlist">Добавить в плейлист</string>
+    <string name="like">Нравится</string>
+    <string name="album_cover">Обложка альбома</string>
 </resources>

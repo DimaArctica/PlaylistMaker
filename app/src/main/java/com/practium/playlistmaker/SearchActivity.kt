@@ -2,6 +2,7 @@ package com.practium.playlistmaker
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.text.Editable
@@ -14,7 +15,6 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
-import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -30,6 +30,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 const val ITUNES_BASE_URL = "https://itunes.apple.com"
+const val TRACK_KEY = "TRACK_KEY"
 
 class SearchActivity : AppCompatActivity() {
 
@@ -95,7 +96,7 @@ class SearchActivity : AppCompatActivity() {
         searchHistoryListAdapter = TrackListSearchAdapter(
             searchHistoryList,
             onTrackClick = {track ->
-                clickOnTrack(track, sharedPrefs)})
+                clickOnTrack(track, sharedPrefs) })
 
         searchHistoryRecyclerView.adapter = searchHistoryListAdapter
 
@@ -244,6 +245,9 @@ class SearchActivity : AppCompatActivity() {
         searchHistory.addTrackToSearchHistory(sharedPrefs, track)
         searchHistoryList.addAll(searchHistory.getSearchHistory())
         searchHistoryListAdapter.notifyDataSetChanged()
+        val audioPlayerIntent = Intent(this, AudioPlayer::class.java)
+        audioPlayerIntent.putExtra(TRACK_KEY, track)
+        startActivity(audioPlayerIntent)
     }
 
     companion object {
