@@ -55,28 +55,36 @@
 
     <TextView
         android:id="@+id/trackNamePlayer"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_std_2"
         android:layout_marginStart="@dimen/margin_std_1"
         android:text="@string/track_name"
         android:textColor="@color/text_main_color_1"
         android:textSize="22sp"
+        android:maxLines="1"
+        android:ellipsize="end"
         app:layout_constraintTop_toBottomOf="@id/albumCoverPlayer"
         app:layout_constraintStart_toStartOf="@id/leftBorder"
+        app:layout_constraintEnd_toStartOf="@id/rightBorder"
+        android:gravity="start"
         />
 
     <TextView
         android:id="@+id/artistNamePlayer"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:layout_marginStart="@dimen/margin_std_1"
         android:text="@string/artist_name"
         android:textColor="@color/text_main_color_1"
         android:textSize="14sp"
+        android:maxLines="1"
+        android:ellipsize="end"
         app:layout_constraintTop_toBottomOf="@id/trackNamePlayer"
         app:layout_constraintStart_toStartOf="@id/leftBorder"
+        app:layout_constraintEnd_toStartOf="@id/rightBorder"
+        android:gravity="start"
         />
 
     <ImageView
@@ -204,8 +212,6 @@
         app:layout_constraintEnd_toEndOf="@id/rightBorder"
         app:layout_constraintBottom_toBottomOf="@id/trackAlbum"
         android:text="@string/Album"
-        android:maxLines="1"
-        android:ellipsize="end"
         />
 
     <TextView
