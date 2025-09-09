@@ -41,6 +41,7 @@ class SearchActivity : AppCompatActivity() {
         private const val SEARCH_LINE = "SEARCH_LINE"
         private const val SEARCH_LINE_DEF = ""
         private const val SEARCH_DEBOUNCE_DELAY = 1_000L
+        private const val CLICK_DEBOUNCE_DELAY = 1_000L
     }
 
     private var searchLine: String = SEARCH_LINE_DEF
@@ -67,6 +68,7 @@ class SearchActivity : AppCompatActivity() {
 
     private val searchRunnable = Runnable { search() }
     private val handler = Handler(Looper.getMainLooper())
+    private var isClickAllowed = true
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -269,13 +271,15 @@ class SearchActivity : AppCompatActivity() {
 
     @SuppressLint("NotifyDataSetChanged")
     private fun clickOnTrack(track: Track, sharedPrefs: SharedPreferences) {
-        searchHistoryList.clear()
-        searchHistory.addTrackToSearchHistory(sharedPrefs, track)
-        searchHistoryList.addAll(searchHistory.getSearchHistory())
-        searchHistoryListAdapter.notifyDataSetChanged()
-        val audioPlayerIntent = Intent(this, AudioPlayer::class.java)
-        audioPlayerIntent.putExtra(TRACK_KEY, track)
-        startActivity(audioPlayerIntent)
+        if (clickDebounce()) {
+            searchHistoryList.clear()
+            searchHistory.addTrackToSearchHistory(sharedPrefs, track)
+            searchHistoryList.addAll(searchHistory.getSearchHistory())
+            searchHistoryListAdapter.notifyDataSetChanged()
+            val audioPlayerIntent = Intent(this, AudioPlayer::class.java)
+            audioPlayerIntent.putExtra(TRACK_KEY, track)
+            startActivity(audioPlayerIntent)
+        }
     }
 
     private fun searchDebounce() {
@@ -289,6 +293,15 @@ class SearchActivity : AppCompatActivity() {
 
     private fun hideProgressBar() {
         searchProgressBar.isVisible = false
+    }
+
+    private fun clickDebounce(): Boolean {
+        val current = isClickAllowed
+        if (isClickAllowed) {
+            isClickAllowed = false
+            handler.postDelayed({ isClickAllowed = true }, CLICK_DEBOUNCE_DELAY)
+        }
+        return current
     }
 
     enum class Placeholder {
