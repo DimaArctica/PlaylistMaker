@@ -53,4 +53,5 @@
     <dimen name="trackDurationTextSizeInPlayer">14sp</dimen>
     <dimen name="playPauseButtonSize">100dp</dimen>
     <dimen name="addToPlaylistAndLikedButtonsSize">51dp</dimen>
+    <dimen name="SearchProgressBarSize">44dp</dimen>
 </resources>
