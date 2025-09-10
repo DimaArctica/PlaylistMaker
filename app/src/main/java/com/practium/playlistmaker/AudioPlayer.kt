@@ -163,7 +163,6 @@ class AudioPlayer : AppCompatActivity() {
         mediaPlayer.pause()
         playPauseButton.setImageResource(R.drawable.play_button)
         playerState = STATE_PAUSED
-        trackPlayerTimer?.removeCallbacks(updateCurrentPlaybackPosition())
     }
 
     private fun playbackControl() {
