@@ -62,6 +62,16 @@
         android:visibility="gone"
         />
 
+    <ProgressBar
+        android:id="@+id/searchProgressBar"
+        android:layout_width="@dimen/SearchProgressBarSize"
+        android:layout_height="@dimen/SearchProgressBarSize"
+        android:layout_gravity="center"
+        android:layout_marginTop="248dp"
+        android:indeterminateTint="@color/yp_blue"
+        android:visibility="gone"
+        />
+
     <LinearLayout
         android:id="@+id/searchHistoryLayout"
         android:layout_width="match_parent"
