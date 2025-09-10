@@ -40,7 +40,7 @@ class SearchActivity : AppCompatActivity() {
     companion object {
         private const val SEARCH_LINE = "SEARCH_LINE"
         private const val SEARCH_LINE_DEF = ""
-        private const val SEARCH_DEBOUNCE_DELAY = 1_000L
+        private const val SEARCH_DEBOUNCE_DELAY = 2_000L
         private const val CLICK_DEBOUNCE_DELAY = 1_000L
     }
 
@@ -129,7 +129,6 @@ class SearchActivity : AppCompatActivity() {
             }
             false
         }
-
 
         goBackArrow.setNavigationOnClickListener {
             finish()
