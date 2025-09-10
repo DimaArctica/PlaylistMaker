@@ -37,12 +37,6 @@ const val TRACK_KEY = "TRACK_KEY"
 
 class SearchActivity : AppCompatActivity() {
 
-    companion object {
-        private const val SEARCH_LINE = "SEARCH_LINE"
-        private const val SEARCH_LINE_DEF = ""
-        private const val SEARCH_DEBOUNCE_DELAY = 2_000L
-        private const val CLICK_DEBOUNCE_DELAY = 1_000L
-    }
 
     private var searchLine: String = SEARCH_LINE_DEF
 
@@ -180,6 +174,11 @@ class SearchActivity : AppCompatActivity() {
 
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        handler.removeCallbacks(searchRunnable)
+    }
+
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         outState.putString(SEARCH_LINE, searchLine)
@@ -211,7 +210,7 @@ class SearchActivity : AppCompatActivity() {
                                 if (responseResult?.isNotEmpty() == true) {
                                     hideProgressBar()
                                     trackList.clear()
-                                    trackList.addAll(response.body()?.results!!)
+                                    trackList.addAll(responseResult)
                                     trackListAdapter.notifyDataSetChanged()
                                 } else {
                                     showPlaceholder(Placeholder.NOTHING_FIND)
@@ -306,6 +305,13 @@ class SearchActivity : AppCompatActivity() {
     enum class Placeholder {
         NOTHING_FIND,
         NO_CONNECTION
+    }
+
+    companion object {
+        private const val SEARCH_LINE = "SEARCH_LINE"
+        private const val SEARCH_LINE_DEF = ""
+        private const val SEARCH_DEBOUNCE_DELAY = 2_000L
+        private const val CLICK_DEBOUNCE_DELAY = 1_000L
     }
 
 }

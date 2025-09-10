@@ -36,6 +36,7 @@ class AudioPlayer : AppCompatActivity() {
     private var mediaPlayer = MediaPlayer()
     private var playerState = STATE_DEFAULT
     private var mainThreadHandler: Handler? = null
+    private val dateFormat by lazy { SimpleDateFormat("mm:ss", Locale.getDefault()) }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -140,7 +141,7 @@ class AudioPlayer : AppCompatActivity() {
         mediaPlayer.prepareAsync()
         mediaPlayer.setOnPreparedListener {
             playerState = STATE_PREPARED
-            trackPlayerTimer?.setText("00:00")
+            trackPlayerTimer?.setText(getString(R.string.zero_duration))
         }
         mediaPlayer.setOnCompletionListener {
             playPauseButton.setImageResource(R.drawable.play_button)
@@ -186,7 +187,7 @@ class AudioPlayer : AppCompatActivity() {
             override fun run() {
                 if (playerState == STATE_PLAYING) {
                     trackPlayerTimer?.setText(
-                        SimpleDateFormat("mm:ss", Locale.getDefault()).format(
+                        dateFormat.format(
                             mediaPlayer.currentPosition
                         )
                     )
