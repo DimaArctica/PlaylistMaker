@@ -121,6 +121,7 @@ class AudioPlayer : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
+        trackPlayerTimer?.removeCallbacks(updateCurrentPlaybackPosition())
         mediaPlayer.release()
     }
 
